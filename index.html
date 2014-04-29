@@ -1,0 +1,260 @@
+<html>
+<head>
+<style>
+table {
+    border-collapse: collapse;
+}
+.interactive {
+    display: inline;
+}
+.printHead {
+    display: none;
+}
+.space-entry {
+    width: 50%;
+    padding: 10px 10px 10px 10px;
+}
+.ptable {
+    width: 100%;
+    border: 1px solid black;
+}
+.ptable td {
+    border: 3px solid black;
+    padding: 5px 3px 3px 5px;    
+}
+.ptable .label {
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: right;
+}
+.ptable .value {
+    font-weight: normal;
+    text-align: left;
+    width: 80%;
+}
+@media print {
+    .interactive {
+        display: none;
+    }
+    .printHead {
+        display: inline;
+    }
+    #printTitle {
+        font-family: sans-serif;
+        font-weight: bold;
+        text-align: center; 
+        padding-bottom: 10px;       
+    }
+    .raPH {
+        width: 20%;
+        text-align: right;
+        font-size: smaller;
+        font-family: sans-serif;
+        font-weight: bold;
+        padding-bottom: 3px;
+    }
+}
+</style>
+</head>
+<body>
+    <div class="printHead">
+        <div id="printTitle">Pokémon Video Game Team List</div>
+        <div class="raPH">
+            Name:<br/>
+            Player ID:<br/>
+            Event Name:<br/>
+            Age Division:<br/>
+            Date:<br/>
+        </div>
+        <hr/>
+    </div>
+    <div class="interactive">
+        <h2>Input:</h2>
+        <textarea id="inText" rows="10" cols="80" autofocus placeholder="Paste your Showdown roster here"></textarea>
+        <br/>
+        <input type="button" onclick="populateTables()" value="OK">
+        <input type="button" onclick="printTables()" value="Print">
+        <input type="button" onclick="clearTables()" value="Clear">
+        <h2>Output:</h2>
+    </div>
+    <table id="outputTable" border="0px" style="width:100%">
+        <tr>
+            <td class="space-entry">
+                <table class="ptable">
+                    <tr><td class="label">Pokemon</td><td id="pokemon" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Ability</td><td id="ability" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Held Item</td><td id="heldItem" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 1</td><td id="move1" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 2</td><td id="move2" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 3</td><td id="move3" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 4</td><td id="move4" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Nature</td><td id="nature" class="value">&nbsp;</td></tr>
+                </table>
+            </td>
+            <td class="space-entry">
+                <table class="ptable">
+                    <tr><td class="label">Pokemon</td><td id="pokemon" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Ability</td><td id="ability" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Held Item</td><td id="heldItem" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 1</td><td id="move1" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 2</td><td id="move2" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 3</td><td id="move3" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 4</td><td id="move4" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Nature</td><td id="nature" class="value">&nbsp;</td></tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="space-entry">
+                <table class="ptable">
+                    <tr><td class="label">Pokemon</td><td id="pokemon" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Ability</td><td id="ability" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Held Item</td><td id="heldItem" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 1</td><td id="move1" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 2</td><td id="move2" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 3</td><td id="move3" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 4</td><td id="move4" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Nature</td><td id="nature" class="value">&nbsp;</td></tr>
+                </table>
+            </td>
+            <td class="space-entry">
+                <table class="ptable">
+                    <tr><td class="label">Pokemon</td><td id="pokemon" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Ability</td><td id="ability" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Held Item</td><td id="heldItem" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 1</td><td id="move1" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 2</td><td id="move2" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 3</td><td id="move3" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 4</td><td id="move4" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Nature</td><td id="nature" class="value">&nbsp;</td></tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="space-entry">
+                <table class="ptable">
+                    <tr><td class="label">Pokemon</td><td id="pokemon" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Ability</td><td id="ability" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Held Item</td><td id="heldItem" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 1</td><td id="move1" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 2</td><td id="move2" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 3</td><td id="move3" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 4</td><td id="move4" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Nature</td><td id="nature" class="value">&nbsp;</td></tr>
+                </table>
+            </td>
+            <td class="space-entry">
+                <table class="ptable">
+                    <tr><td class="label">Pokemon</td><td id="pokemon" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Ability</td><td id="ability" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Held Item</td><td id="heldItem" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 1</td><td id="move1" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 2</td><td id="move2" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 3</td><td id="move3" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Move 4</td><td id="move4" class="value">&nbsp;</td></tr>
+                    <tr><td class="label">Nature</td><td id="nature" class="value">&nbsp;</td></tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script>
+var populateTables = function () {
+    var parsed = showdown_parser.parse($("#inText").val());
+
+    $.each($(".ptable"), function( i, elt) {
+        if (i < parsed.length) {
+            poke = parsed[i];
+            $(this).find("#pokemon").text(poke.pokemon);
+            $(this).find("#ability").text(poke.ability);
+            $(this).find("#heldItem").text(poke.heldItem);
+            poke.moves.length > 0 && $(this).find("#move1").text(poke.moves[0]);
+            poke.moves.length > 1 && $(this).find("#move2").text(poke.moves[1]);
+            poke.moves.length > 2 && $(this).find("#move3").text(poke.moves[2]);
+            poke.moves.length > 3 && $(this).find("#move4").text(poke.moves[3]);
+            $(this).find("#nature").text(poke.nature);
+        } else {
+            $(this).find("#pokemon").text('');
+            $(this).find("#ability").text('');
+            $(this).find("#heldItem").text('');
+            $(this).find("#move1").text('');
+            $(this).find("#move2").text('');
+            $(this).find("#move3").text('');
+            $(this).find("#move4").text('');
+            $(this).find("#nature").text('');
+        }
+    });
+};
+
+var clearTables = function () {
+    $("#inText").val('');
+    populateTables();
+};
+
+var printTables = function () {
+    window.print();
+};
+
+var showdown_parser = (function() {
+
+    var nameLinePat = /^([^\s]+)\s?(\([^\)]*\))?\s?(?:\([MF]\))? @ (.*)$/;
+    var abilityLinePat = /^Ability: (.*)$/;
+    var natureLinePat = /^(.*) Nature$/;
+    var moveLinePat = /^-\s?(.*)$/;
+
+    return {
+        parse: function (data) {
+            var allPokes = [];
+            var lines = data.split('\n');
+
+            var curPoke = {};
+            var bits;
+            for (var i=0; i<lines.length; i++) {
+                var curLine = lines[i].trim();
+
+                if (curLine.length === 0) {
+                    if (Object.keys(curPoke).length) {
+                        allPokes.push(curPoke);
+                    }
+                    curPoke = {};
+                } else if (nameLinePat.test(curLine)) {
+                    bits = nameLinePat.exec(curLine);
+
+                    if (bits[2]) {
+                        curPoke.nickname = bits[1];
+                        curPoke.pokemon = bits[2].slice(1,bits[2].length-1);
+                        curPoke.heldItem = bits[3];
+                    } else {
+                        curPoke.pokemon = bits[1];
+                        curPoke.heldItem = bits[3];
+                    }
+                } else if (abilityLinePat.test(curLine)) {
+                    bits = abilityLinePat.exec(curLine);
+
+                    curPoke.ability = bits[1];
+                } else if (natureLinePat.test(curLine)) {
+                    bits = natureLinePat.exec(curLine);
+
+                    curPoke.nature = bits[1];
+                } else if (moveLinePat.test(curLine)) {
+                    bits = moveLinePat.exec(curLine);
+
+                    if (curPoke.moves) {
+                        curPoke.moves.push(bits[1]);
+                    } else {
+                        curPoke.moves = [bits[1]];
+                    }
+                }
+            }
+
+            if (Object.keys(curPoke).length) {
+                allPokes.push(curPoke);
+            }
+
+            return allPokes;
+        }
+    }
+})();
+    </script>
+</body>
+</html>
