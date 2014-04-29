@@ -7,6 +7,20 @@ table {
 .interactive {
     display: inline;
 }
+#boxLayout {
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+}
+#boxLayout p {
+    padding-right: 50px;
+}
+#help {
+    box-flex: 0;
+}
+#inText {
+    box-flex: 1;
+}
 .printHead {
     display: none;
 }
@@ -70,11 +84,27 @@ table {
     </div>
     <div class="interactive">
         <h2>Input:</h2>
-        <textarea id="inText" rows="10" cols="80" autofocus placeholder="Paste your Showdown roster here"></textarea>
-        <br/>
-        <input type="button" onclick="populateTables()" value="OK">
-        <input type="button" onclick="printTables()" value="Print">
-        <input type="button" onclick="clearTables()" value="Clear">
+        <div id="boxLayout">
+            <p id="help">
+                <b>Use the following format for all Pokemon:</b><br />
+                <br />
+                <i>Pokemon</i> @ <i>Item</i><br />
+                Ability: <i>ability</i><br />
+                <i>nature</i> Nature<br />
+                - <i>Move 1</i><br />
+                - <i>Move 2</i><br />
+                - <i>Move 3</i><br />
+                - <i>Move 4</i><br />
+            </p>
+            <p>
+                <br />
+                <textarea id="inText" rows="10" cols="80" autofocus placeholder="Paste your roster here"></textarea>
+                <br/>
+                <input type="button" onclick="populateTables()" value="OK">
+                <input type="button" onclick="printTables()" value="Print">
+                <input type="button" onclick="clearTables()" value="Clear">
+            </p>
+        </div>
         <h2>Output:</h2>
     </div>
     <table id="outputTable" border="0px" style="width:100%">
