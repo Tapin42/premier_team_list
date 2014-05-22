@@ -1,62 +1,80 @@
 <html>
 <head>
+<meta charset="utf-8"/>
 <style>
-table {
-    border-collapse: collapse;
-}
-.interactive {
-    display: inline;
-}
-#boxLayout {
-    display: box;
-    display: -webkit-box;
-    display: -moz-box;
-}
-#boxLayout p {
-    padding-right: 50px;
-}
-#help {
-    box-flex: 0;
-}
-#inputDiv {
-    position: relative;
-    top: 30px;
-}
-#inText {
-    box-flex: 1;
-}
-.printHead {
-    display: none;
-}
-.space-entry {
-    width: 50%;
-    padding: 10px 10px 10px 10px;
-}
-.ptable {
-    width: 100%;
-    border: 1px solid black;
-}
-.ptable td {
-    border: 3px solid black;
-    padding: 5px 3px 3px 5px;    
-}
-.ptable .label {
-    font-family: sans-serif;
-    font-weight: bold;
-    text-align: right;
-    white-space: nowrap;
-}
-.ptable .value {
-    font-weight: normal;
-    text-align: left;
-    width: 80%;
+@media screen {
+    table {
+        border-collapse: collapse;
+    }
+    .interactive {
+        display: inline;
+    }
+    #boxLayout {
+        display: box;
+        display: -webkit-box;
+        display: -moz-box;
+    }
+    #boxLayout p {
+        padding-right: 50px;
+    }
+    #help {
+        box-flex: 0;
+    }
+    #inputDiv {
+        position: relative;
+        top: 30px;
+    }
+    #inText {
+        box-flex: 1;
+    }
+    .printHead {
+        display: none;
+    }
+    .space-entry {
+        width: 50%;
+        padding: 10px 10px 10px 10px;
+    }
+    #outputTable {
+        width: 80%;
+        border: 0px;
+    }
+    .ptable {
+        display: none;
+        width: 100%;
+    }
+    .ptable th {
+        padding: 5px 10px 5px 3px;
+    }
+    .ptable td {
+        border: 1px solid #cccccc;
+        padding: 5px 3px 5px 5px;
+    }
+    .ptable .label {
+        font-family: sans-serif;
+        font-weight: bold;
+        text-align: right;
+        white-space: nowrap;
+        width: 20%;
+    }
+    .ptable .value {
+        font-weight: normal;
+        text-align: left;
+        width: 80%;
+    }
 }
 @media print {
+    @page {
+        margin: 2.5cm;
+    }
+    table {
+        border-collapse: collapse;
+    }
     .interactive {
         display: none;
     }
     .printHead {
         display: inline;
+        line-height: 1.5;
     }
     #printTitle {
         font-family: sans-serif;
@@ -64,13 +82,45 @@ table {
         text-align: center; 
         padding-bottom: 10px;       
     }
+    #outputTable {
+        width: 100%;
+        border: 0px;
+    }
     .raPH {
         width: 20%;
         text-align: right;
-        font-size: smaller;
+        font-size: 10pt;
         font-family: sans-serif;
         font-weight: bold;
         padding-bottom: 3px;
+    }
+    .space-entry {
+        width: 50%;
+        padding: 10px 10px 10px 10px;
+    }
+    .ptable {
+        width: 100%;
+        display: inline;
+        border: 1px solid black;
+    }
+    .ptable td, th {
+        border: 2px solid black;
+        padding: 3px 3px 3px 3px;
+    }
+    .ptable .label {
+        font-family: sans-serif;
+        font-size: 10pt;
+        font-weight: bold;
+        text-align: right;
+        white-space: nowrap;
+        width: 20%;
+    }
+    .ptable .value {
+        font-weight: normal;
+        font-size: 10pt;
+        text-align: left;
+        white-space: nowrap;
+        width: 80%;
     }
 }
 </style>
@@ -83,7 +133,7 @@ table {
             Player ID:<br/>
             Event Name:<br/>
             Age Division:<br/>
-            Date:<br/>
+            Birth Date:<br/>
         </div>
         <hr/>
     </div>
@@ -111,82 +161,82 @@ table {
         </div>
         <h2>Output:</h2>
     </div>
-    <table id="outputTable" border="0px" style="width:100%">
+    <table id="outputTable">
         <tr>
             <td class="space-entry">
                 <table class="ptable">
-                    <tr><td class="label">Pokemon</td><td id="pokemon" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Ability</td><td id="ability" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Held Item</td><td id="heldItem" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 1</td><td id="move1" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 2</td><td id="move2" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 3</td><td id="move3" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 4</td><td id="move4" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Nature</td><td id="nature" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Pokemon</th><td id="pokemon" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Ability</th><td id="ability" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Held Item</th><td id="heldItem" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 1</th><td id="move1" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 2</th><td id="move2" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 3</th><td id="move3" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 4</th><td id="move4" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Nature</th><td id="nature" class="value">&nbsp;</td></tr>
                 </table>
             </td>
             <td class="space-entry">
                 <table class="ptable">
-                    <tr><td class="label">Pokemon</td><td id="pokemon" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Ability</td><td id="ability" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Held Item</td><td id="heldItem" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 1</td><td id="move1" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 2</td><td id="move2" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 3</td><td id="move3" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 4</td><td id="move4" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Nature</td><td id="nature" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Pokemon</th><td id="pokemon" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Ability</th><td id="ability" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Held Item</th><td id="heldItem" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 1</th><td id="move1" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 2</th><td id="move2" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 3</th><td id="move3" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 4</th><td id="move4" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Nature</th><td id="nature" class="value">&nbsp;</td></tr>
                 </table>
             </td>
         </tr>
         <tr>
             <td class="space-entry">
                 <table class="ptable">
-                    <tr><td class="label">Pokemon</td><td id="pokemon" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Ability</td><td id="ability" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Held Item</td><td id="heldItem" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 1</td><td id="move1" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 2</td><td id="move2" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 3</td><td id="move3" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 4</td><td id="move4" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Nature</td><td id="nature" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Pokemon</th><td id="pokemon" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Ability</th><td id="ability" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Held Item</th><td id="heldItem" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 1</th><td id="move1" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 2</th><td id="move2" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 3</th><td id="move3" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 4</th><td id="move4" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Nature</th><td id="nature" class="value">&nbsp;</td></tr>
                 </table>
             </td>
             <td class="space-entry">
                 <table class="ptable">
-                    <tr><td class="label">Pokemon</td><td id="pokemon" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Ability</td><td id="ability" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Held Item</td><td id="heldItem" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 1</td><td id="move1" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 2</td><td id="move2" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 3</td><td id="move3" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 4</td><td id="move4" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Nature</td><td id="nature" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Pokemon</th><td id="pokemon" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Ability</th><td id="ability" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Held Item</th><td id="heldItem" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 1</th><td id="move1" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 2</th><td id="move2" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 3</th><td id="move3" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 4</th><td id="move4" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Nature</th><td id="nature" class="value">&nbsp;</td></tr>
                 </table>
             </td>
         </tr>
         <tr>
             <td class="space-entry">
                 <table class="ptable">
-                    <tr><td class="label">Pokemon</td><td id="pokemon" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Ability</td><td id="ability" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Held Item</td><td id="heldItem" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 1</td><td id="move1" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 2</td><td id="move2" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 3</td><td id="move3" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 4</td><td id="move4" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Nature</td><td id="nature" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Pokemon</th><td id="pokemon" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Ability</th><td id="ability" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Held Item</th><td id="heldItem" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 1</th><td id="move1" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 2</th><td id="move2" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 3</th><td id="move3" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 4</th><td id="move4" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Nature</th><td id="nature" class="value">&nbsp;</td></tr>
                 </table>
             </td>
             <td class="space-entry">
                 <table class="ptable">
-                    <tr><td class="label">Pokemon</td><td id="pokemon" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Ability</td><td id="ability" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Held Item</td><td id="heldItem" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 1</td><td id="move1" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 2</td><td id="move2" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 3</td><td id="move3" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Move 4</td><td id="move4" class="value">&nbsp;</td></tr>
-                    <tr><td class="label">Nature</td><td id="nature" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Pokemon</th><td id="pokemon" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Ability</th><td id="ability" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Held Item</th><td id="heldItem" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 1</th><td id="move1" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 2</th><td id="move2" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 3</th><td id="move3" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Move 4</th><td id="move4" class="value">&nbsp;</td></tr>
+                    <tr><th class="label">Nature</th><td id="nature" class="value">&nbsp;</td></tr>
                 </table>
             </td>
         </tr>
@@ -198,6 +248,7 @@ var populateTables = function () {
 
     $.each($(".ptable"), function( i, elt) {
         if (i < parsed.length) {
+            $(this).show();
             poke = parsed[i];
             $(this).find("#pokemon").text(poke.pokemon);
             $(this).find("#ability").text(poke.ability);
@@ -208,6 +259,7 @@ var populateTables = function () {
             poke.moves.length > 3 && $(this).find("#move4").text(poke.moves[3]);
             $(this).find("#nature").text(poke.nature);
         } else {
+            $(this).hide();
             $(this).find("#pokemon").text('');
             $(this).find("#ability").text('');
             $(this).find("#heldItem").text('');
@@ -226,7 +278,11 @@ var clearTables = function () {
 };
 
 var printTables = function () {
+    $.each($(".ptable"), function() {
+        $(this).show();
+    });
     window.print();
+    populateTables();
 };
 
 var showdown_parser = (function() {
@@ -254,7 +310,8 @@ var showdown_parser = (function() {
                 } else if (nameLinePat.test(curLine)) {
                     bits = nameLinePat.exec(curLine);
 
-                    if (bits[2]) {
+                    // If bits[2] is length 3, then it's '(M)' or '(F)'.  Which isn't a Pokemon.
+                    if (bits[2] && bits[2].length !== 3) {
                         curPoke.nickname = bits[1];
                         curPoke.pokemon = bits[2].slice(1,bits[2].length-1);
                         curPoke.heldItem = bits[3];
