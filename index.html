@@ -315,11 +315,28 @@ var showdown_parser = (function() {
             var bits;
 
             function finalizePoke(cur, all) {
+                
                 if (cur.pokemon) {
+                    // Mega check
                     if (cur.pokemon.indexOf('-Mega') > -1) {
                         cur.warnAboutMega = true;
                     }
+
+                    // Rotom formes, just say "Rotom".
+                    if (cur.pokemon.indexOf('Rotom') === 0) {
+                        cur.pokemon = 'Rotom';
+                    }
                 }
+
+                if (cur.moves) {
+                    // Hidden Power; don't give it away!
+                    for (var i=0; i<cur.moves.length; i++) {
+                        if (cur.moves[i].indexOf('Hidden Power') === 0) {
+                            cur.moves[i] = 'Hidden Power';
+                        }
+                    }
+                }
+
                 all.push(cur);
             }
 
